@@ -1,4 +1,4 @@
-#  Gestor de tareas Kanban 🚀
+# Gestor de tareas Kanban 🚀
 
 [![NestJS](https://img.shields.io/badge/NestJS-7.0.0+-red.svg)](https://nestjs.com/)
 [![TypeORM](https://img.shields.io/badge/TypeORM-5.0.0+-green.svg)](https://typeorm.io/)
@@ -26,7 +26,7 @@ Gestiona tus tareas con estilo en este increíble Kanban Task Manager desarrolla
    ```bash
    git clone https://github.com/tu-usuario/tu-proyecto.git
    ```
-   
+
 Navega al directorio del proyecto:
 
 ```bash
@@ -39,16 +39,21 @@ Instala las dependencias:
 ```bash
 
 npm install
-``
+```
+
 Configura tus variables de entorno en un archivo .env:
 dotenv
 
 # Configuración del archivo .env
+
 En el proyecto hay un .env.example el cual te guiara las variables que se utilizan.
 
 ```bash
+
 npm run migration:run
+
 ```
+
 Inicia la aplicación:
 
 ```bash
@@ -56,13 +61,16 @@ Inicia la aplicación:
 npm start
 
 ```
+
 # Uso
+
 Accede a la aplicación desde tu navegador en http://localhost:3000.
 Regístrate o inicia sesión para empezar a utilizar el gestor de tareas Kanban.
 Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'.
 Disfruta de una experiencia de gestión de tareas eficiente y visualmente atractiva.
 
 # Contribuciones
+
 ¡Las contribuciones son bienvenidas! Si tienes ideas para mejoras o encuentras errores, por favor crea un issue o envía una solicitud de pull.
 
 Hecho con ❤️ por Axl Santos.
