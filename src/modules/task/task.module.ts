@@ -7,7 +7,7 @@ import { BoardModule } from '../board/board.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Task])],
+    TypeOrmModule.forFeature([Task]), BoardModule],
   providers: [TaskService],
   controllers: [TaskController],
   exports: [TaskService],

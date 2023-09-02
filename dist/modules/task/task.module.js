@@ -18,10 +18,12 @@ let TaskModule = class TaskModule {
 exports.TaskModule = TaskModule;
 exports.TaskModule = TaskModule = __decorate([
     (0, common_1.Module)({
-        imports: [board_module_1.BoardModule,
-            typeorm_1.TypeOrmModule.forFeature([task_entity_1.Task])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([task_entity_1.Task]), board_module_1.BoardModule
+        ],
         providers: [task_service_1.TaskService],
         controllers: [task_controller_1.TaskController],
+        exports: [task_service_1.TaskService],
     })
 ], TaskModule);
 //# sourceMappingURL=task.module.js.map
