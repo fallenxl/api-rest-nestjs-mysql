@@ -1,15 +1,8 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  BeforeInsert,
-  OneToMany,
-} from 'typeorm';
-import { Board } from '../board/board.entity';
+import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
-@Entity({ name: 'users' })
-export class User {
+@Entity({ name: 'tasks' })
+export class Task {
   @Column()
   @PrimaryGeneratedColumn()
   id: number;
@@ -32,7 +25,4 @@ export class User {
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 10);
   }
-
-  @OneToMany(() => Board, (board) => board.user)
-  boards: Board[];
 }

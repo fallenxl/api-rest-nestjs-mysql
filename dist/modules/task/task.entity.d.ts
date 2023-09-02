@@ -1,10 +1,8 @@
-import { Board } from '../board/board.entity';
-export declare class User {
+export declare class Task {
     id: number;
     username: string;
     password: string;
     created_at: Date;
     usernameToLowerCase(): void;
     hashPassword(): void;
-    boards: Board[];
 }

@@ -11,6 +11,8 @@ const common_1 = require("@nestjs/common");
 const users_module_1 = require("./users/users.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const auth_module_1 = require("./auth/auth.module");
+const task_module_1 = require("./task/task.module");
+const board_module_1 = require("./board/board.module");
 const dotenv = require("dotenv");
 dotenv.config();
 let AppModule = class AppModule {
@@ -31,6 +33,8 @@ exports.AppModule = AppModule = __decorate([
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
+            task_module_1.TaskModule,
+            board_module_1.BoardModule,
         ],
         controllers: [],
         providers: [],

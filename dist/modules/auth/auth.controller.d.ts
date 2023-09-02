@@ -6,5 +6,8 @@ export declare class AuthController {
     signIn(credentials: CredentialsDto): Promise<{
         access_token: string;
     }>;
+    signUp(credentials: CredentialsDto): Promise<{
+        access_token: string;
+    }>;
     getProfile(req: any): any;
 }

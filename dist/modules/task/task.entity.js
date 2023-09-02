@@ -9,11 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Task = void 0;
 const typeorm_1 = require("typeorm");
-const board_entity_1 = require("../board/board.entity");
 const bcrypt = require("bcrypt");
-let User = class User {
+let Task = class Task {
     usernameToLowerCase() {
         this.username = this.username.toLowerCase();
     }
@@ -21,41 +20,37 @@ let User = class User {
         this.password = bcrypt.hashSync(this.password, 10);
     }
 };
-exports.User = User;
+exports.Task = Task;
 __decorate([
     (0, typeorm_1.Column)(),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Task.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
-], User.prototype, "username", void 0);
+], Task.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], Task.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' }),
     __metadata("design:type", Date)
-], User.prototype, "created_at", void 0);
+], Task.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], User.prototype, "usernameToLowerCase", null);
+], Task.prototype, "usernameToLowerCase", null);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], User.prototype, "hashPassword", null);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => board_entity_1.Board, (board) => board.user),
-    __metadata("design:type", Array)
-], User.prototype, "boards", void 0);
-exports.User = User = __decorate([
-    (0, typeorm_1.Entity)({ name: 'users' })
-], User);
-//# sourceMappingURL=users.entity.js.map
+], Task.prototype, "hashPassword", null);
+exports.Task = Task = __decorate([
+    (0, typeorm_1.Entity)({ name: 'tasks' })
+], Task);
+//# sourceMappingURL=task.entity.js.map

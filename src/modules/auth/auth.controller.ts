@@ -21,6 +21,12 @@ import {
     signIn(@Body() credentials: CredentialsDto) {
       return this.authService.signIn(credentials);
     }
+
+    @HttpCode(HttpStatus.CREATED)
+    @Post('signup')
+    signUp(@Body() credentials: CredentialsDto) {
+      return this.authService.signUp(credentials);
+    }
   
     @UseGuards(AuthGuard)
     @Get('profile')

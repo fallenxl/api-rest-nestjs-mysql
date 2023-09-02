@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { TaskModule } from './task/task.module';
+import { BoardModule } from './board/board.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -20,6 +22,8 @@ dotenv.config();
     }),
     UsersModule,
     AuthModule,
+    TaskModule,
+    BoardModule,
   ],
   controllers: [],
   providers: [],
