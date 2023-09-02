@@ -67,8 +67,8 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
 ## Auntenticacion
 
 ### Iniciar Sesion
-**Metodo:** POST
-**Ruta:** '/auth/login'
+**Metodo:** POST<br/>
+**Ruta:** '/auth/login'<br/>
 **Parametros JSON:**
 
 ```json
@@ -78,15 +78,15 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
 }
 ```
 
-**Codigo de Respuesta:** 201
+**Codigo de Respuesta:** 201<br/>
 **Ejemplo de Respuesta:**
 
 ```json
 { "access_token": "token_de_acceso" }
 ```
 ### Registrarse
-**Metodo:** POST
-**Ruta:** '/auth/signup'
+**Metodo:** POST<br/>
+**Ruta:** '/auth/signup'<br/>
 **Parametros JSON:**
 
 ```json
@@ -104,9 +104,9 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
 ## Tableros
 
 ### Crear tablero
-**Metodo:** POST
-**Ruta:** '/boards'
-**Authorization:** 'Bearer <token_del_usuario>'
+**Metodo:** POST<br/>
+**Ruta:** '/boards'<br/>
+**Authorization:** 'Bearer <token_del_usuario>'<br/>
 **Parametros JSON:**
 
 ```json
@@ -117,20 +117,20 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
 
 
 ### Obtener todos los tableros
-**Metodo:** GET
-**Ruta:** '/boards'
+**Metodo:** GET<br/>
+**Ruta:** '/boards'<br/>
 **Authorization:** 'Bearer <token_del_usuario>'
 
 
 ### Obtener tablero por id
-**Metodo:** GET
-**Ruta:** '/boards/:id'
+**Metodo:** GET<br/>
+**Ruta:** '/boards/:id'<br/>
 **Authorization:** 'Bearer <token_del_usuario>'
 
 ### Actualizar tablero por id
-**Metodo:** PUT
-**Ruta:** '/boards/:id'
-**Authorization:** 'Bearer <token_del_usuario>'
+**Metodo:** PUT<br/>
+**Ruta:** '/boards/:id'<br/>
+**Authorization:** 'Bearer <token_del_usuario>'<br/>
 **Parametros JSON:**
 ```json
 {
@@ -139,17 +139,17 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
 ```
 
 ### Eliminar tablero por id
-**Metodo:** DELETE
-**Ruta:** '/boards/:id'
+**Metodo:** DELETE<br/>
+**Ruta:** '/boards/:id'<br/>
 **Authorization:** 'Bearer <token_del_usuario>'
 
 
 ## Tareas
 
 ### Crear tarea
-**Metodo:** POST
-**Ruta:** '/boards/:boardId/tasks'
-**Authorization:** 'Bearer <token_del_usuario>'
+**Metodo:** POST<br/>
+**Ruta:** '/boards/:boardId/tasks'<br/>
+**Authorization:** 'Bearer <token_del_usuario>'<br/>
 **Parametros JSON:**
 
 ```json
@@ -161,20 +161,20 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
 
 
 ### Obtener todas las tareas
-**Metodo:** GET
-**Ruta:** '/boards/:boardId/tasks'
+**Metodo:** GET<br/>
+**Ruta:** '/boards/:boardId/tasks'<br/>
 **Authorization:** 'Bearer <token_del_usuario>'
 
 
 ### Obtener tarea por id
-**Metodo:** GET
-**Ruta:** '/boards/:boardId/tasks/:id'
+**Metodo:** GET<br/>
+**Ruta:** '/boards/:boardId/tasks/:id'<br/>
 **Authorization:** 'Bearer <token_del_usuario>'
 
 ### Actualizar tablero por id
-**Metodo:** PUT
-**Ruta:** '/boards/:boardId/tasks/:id'
-**Authorization:** 'Bearer <token_del_usuario>'
+**Metodo:** PUT<br/>
+**Ruta:** '/boards/:boardId/tasks/:id'<br/>
+**Authorization:** 'Bearer <token_del_usuario>'<br/>
 **Parametros JSON:**
 ```json
 {
@@ -184,8 +184,8 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
 ```
 
 ### Eliminar tarea por id
-**Metodo:** DELETE
-**Ruta:** '/boards/:boardId/tasks/:id'
+**Metodo:** DELETE<br/>
+**Ruta:** '/boards/:boardId/tasks/:id' <br/>
 **Authorization:** 'Bearer <token_del_usuario>'
 
 
