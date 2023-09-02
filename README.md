@@ -6,12 +6,15 @@
 
 Gestiona tus tareas de estilo Kanban desarrollado con NestJS, TypeORM y autenticación JWT.
 
+**Deploy:** https://api-rest-nestjs-mysql-production.up.railway.app/
+
 ## Características
 
 - Interfaz de usuario intuitiva y atractiva para gestionar tus tareas.
 - Tres estados de tareas predefinidos: 'To Do', 'In Progress' y 'Done'.
 - Autenticación segura con JWT para proteger tus datos.
 - Almacenamiento de tareas en una base de datos compatible con TypeORM.
+- Desplegado en Railway.
 
 ## Requisitos
 
