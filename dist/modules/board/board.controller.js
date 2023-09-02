@@ -27,38 +27,16 @@ let BoardController = class BoardController {
         return this.boardService.getBoards(req.user.sub);
     }
     async getBoardById(req, id) {
-        try {
-            const boardFound = await this.boardService.getBoardById(+id, req.user.sub);
-            if (!boardFound) {
-                throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
-            }
-            return boardFound;
-        }
-        catch (error) {
-            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
-        }
+        return this.boardService.getBoardById(+id, req.user.sub);
     }
     async updateBoard(req, id, title) {
         if (!title) {
             throw new common_1.NotFoundException(`Title is required`);
         }
-        const boardFound = await this.boardService.getBoardById(+id, req.user.sub);
-        if (!boardFound) {
-            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
-        }
         return this.boardService.updateBoard(+id, title, req.user.sub);
     }
     async deleteBoard(req, id) {
-        try {
-            const boardFound = await this.boardService.getBoardById(+id, req.user.sub);
-            if (!boardFound) {
-                throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
-            }
-            return this.boardService.deleteBoard(+id, req.user.sub);
-        }
-        catch (error) {
-            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
-        }
+        return this.boardService.deleteBoard(+id, req.user.sub);
     }
 };
 exports.BoardController = BoardController;

@@ -21,35 +21,44 @@ let BoardService = class BoardService {
     constructor(boardRepository) {
         this.boardRepository = boardRepository;
     }
-    createBoard(title, userId) {
-        const newBoard = this.boardRepository.create({ title, userId });
-        return this.boardRepository.save(newBoard);
+    async createBoard(title, userId) {
+        const boardFound = await this.getBoardByTitle(title, userId);
+        if (boardFound) {
+            throw new common_1.HttpException(`Board with title "${title}" already exists`, common_1.HttpStatus.CONFLICT);
+        }
+        const board = this.boardRepository.create({ title, userId });
+        return this.boardRepository.save(board);
+    }
+    getBoardByTitle(title, userId) {
+        return this.boardRepository.findOne({ where: { title, userId } });
     }
     getBoards(userId) {
         return this.boardRepository.find({ where: { userId } });
     }
     getBoardById(id, userId) {
-        return this.boardRepository.findOne({
+        const boardFound = this.boardRepository.findOne({
             where: { id, userId },
-            relations: ['tasks'],
         });
+        return boardFound;
     }
     async updateBoard(id, title, userId) {
         const boardFound = await this.getBoardById(id, userId);
+        if (!boardFound) {
+            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
+        }
+        const boardWithTitle = await this.getBoardByTitle(title, userId);
+        if (boardWithTitle) {
+            throw new common_1.HttpException(`Board with title "${title}" already exists`, common_1.HttpStatus.CONFLICT);
+        }
         boardFound.title = title;
         return this.boardRepository.save(boardFound);
     }
     async deleteBoard(id, userId) {
-        try {
-            const boardFound = await this.boardRepository.findOne({
-                where: { id, userId },
-                relations: ['tasks'],
-            });
-            return this.boardRepository.remove(boardFound);
-        }
-        catch (error) {
+        const boardFound = await this.getBoardById(id, userId);
+        if (!boardFound) {
             throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
         }
+        return this.boardRepository.remove(boardFound);
     }
 };
 exports.BoardService = BoardService;

@@ -22,24 +22,24 @@ let TaskController = class TaskController {
     constructor(taskService) {
         this.taskService = taskService;
     }
-    createTask(boardId, title) {
-        return this.taskService.createTask(title, boardId);
+    createTask(boardId, title, req) {
+        return this.taskService.createTask(title, boardId, req.user.sub);
     }
-    getTasks(boardId) {
-        return this.taskService.getTasks(boardId);
+    getTasks(boardId, req) {
+        return this.taskService.getTasks(boardId, req.user.sub);
     }
-    getTaskById(id, boardId) {
-        return this.taskService.getTaskById(id, boardId);
+    getTaskById(id, boardId, req) {
+        return this.taskService.getTaskById(id, boardId, req.user.sub);
     }
-    updateTask(id, boardId, task) {
+    updateTask(id, boardId, task, req) {
         const { status } = task;
         if (status && !Object.values(task_entity_1.TaskStatus).includes(status)) {
             throw new Error('Invalid status');
         }
-        return this.taskService.updateTask(id, task, boardId);
+        return this.taskService.updateTask(id, task, boardId, req.user.sub);
     }
-    deleteTask(id, boardId) {
-        return this.taskService.deleteTask(id, boardId);
+    deleteTask(id, boardId, req) {
+        return this.taskService.deleteTask(id, boardId, req.user.sub);
     }
 };
 exports.TaskController = TaskController;
@@ -48,23 +48,26 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Param)('boardId')),
     __param(1, (0, common_1.Body)('title')),
+    __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, String]),
+    __metadata("design:paramtypes", [Number, String, Object]),
     __metadata("design:returntype", void 0)
 ], TaskController.prototype, "createTask", null);
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Param)('boardId')),
+    __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", void 0)
 ], TaskController.prototype, "getTasks", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('boardId')),
+    __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", [Number, Number, Object]),
     __metadata("design:returntype", void 0)
 ], TaskController.prototype, "getTaskById", null);
 __decorate([
@@ -72,16 +75,18 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('boardId')),
     __param(2, (0, common_1.Body)()),
+    __param(3, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number, update_task_dto_1.UpdateTaskDto]),
+    __metadata("design:paramtypes", [Number, Number, update_task_dto_1.UpdateTaskDto, Object]),
     __metadata("design:returntype", void 0)
 ], TaskController.prototype, "updateTask", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('boardId')),
+    __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", [Number, Number, Object]),
     __metadata("design:returntype", void 0)
 ], TaskController.prototype, "deleteTask", null);
 exports.TaskController = TaskController = __decorate([
