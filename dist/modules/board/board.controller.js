@@ -24,16 +24,41 @@ let BoardController = class BoardController {
         return this.boardService.createBoard(title, req.user.sub);
     }
     getBoards(req) {
-        return this.boardService.getBoards(req.user.id);
+        return this.boardService.getBoards(req.user.sub);
     }
-    getBoardById(req, id) {
-        return this.boardService.getBoardById(+id, req.user.sub);
+    async getBoardById(req, id) {
+        try {
+            const boardFound = await this.boardService.getBoardById(+id, req.user.sub);
+            if (!boardFound) {
+                throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
+            }
+            return boardFound;
+        }
+        catch (error) {
+            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
+        }
     }
-    updateBoard(req, id, title) {
+    async updateBoard(req, id, title) {
+        if (!title) {
+            throw new common_1.NotFoundException(`Title is required`);
+        }
+        const boardFound = await this.boardService.getBoardById(+id, req.user.sub);
+        if (!boardFound) {
+            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
+        }
         return this.boardService.updateBoard(+id, title, req.user.sub);
     }
-    deleteBoard(req, id) {
-        return this.boardService.deleteBoard(+id, req.user.sub);
+    async deleteBoard(req, id) {
+        try {
+            const boardFound = await this.boardService.getBoardById(+id, req.user.sub);
+            if (!boardFound) {
+                throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
+            }
+            return this.boardService.deleteBoard(+id, req.user.sub);
+        }
+        catch (error) {
+            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
+        }
     }
 };
 exports.BoardController = BoardController;
@@ -59,7 +84,7 @@ __decorate([
     __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BoardController.prototype, "getBoardById", null);
 __decorate([
     (0, common_1.Put)(':id'),
@@ -68,7 +93,7 @@ __decorate([
     __param(2, (0, common_1.Body)('title')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BoardController.prototype, "updateBoard", null);
 __decorate([
     (0, common_1.Delete)(':id'),
@@ -76,7 +101,7 @@ __decorate([
     __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BoardController.prototype, "deleteBoard", null);
 exports.BoardController = BoardController = __decorate([
     (0, common_1.Controller)('boards'),

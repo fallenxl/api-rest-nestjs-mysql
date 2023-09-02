@@ -1,5 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Board } from '../board/board.entity';
+
+export enum TaskStatus {
+  ToDo = 'To Do',
+  InProgress = 'In Progress',
+  Done = 'Done',
+}
 
 @Entity({ name: 'tasks' })
 export class Task {
@@ -7,22 +19,16 @@ export class Task {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  username: string;
-
   @Column()
-  password: string;
+  title: string;
 
-  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
-  created_at: Date;
+  @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.ToDo })
+  status: TaskStatus;
 
-  @BeforeInsert()
-  usernameToLowerCase() {
-    this.username = this.username.toLowerCase();
-  }
+  @Column({ name: 'board_id', nullable: false })
+  boardId: number;
 
-  @BeforeInsert()
-  hashPassword() {
-    this.password = bcrypt.hashSync(this.password, 10);
-  }
+  @ManyToOne(() => Board, (board) => board.tasks, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'board_id' })
+  board: Board;
 }

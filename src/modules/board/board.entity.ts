@@ -1,5 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BeforeInsert,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
 import { User } from '../users/users.entity';
+import { Task } from '../task/task.entity';
 
 @Entity({ name: 'boards' })
 export class Board {
@@ -13,7 +22,10 @@ export class Board {
   @Column({ name: 'user_id', nullable: false })
   userId: number;
 
-  @ManyToOne(() => User, user => user.boards)
+  @ManyToOne(() => User, (user) => user.boards)
   @JoinColumn({ name: 'user_id' })
-    user: User;
+  user: User;
+
+  @OneToMany(() => Task, (task) => task.board, { cascade: true })
+  tasks: Task[];
 }

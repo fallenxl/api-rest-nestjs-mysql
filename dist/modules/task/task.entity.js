@@ -9,16 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Task = void 0;
+exports.Task = exports.TaskStatus = void 0;
 const typeorm_1 = require("typeorm");
-const bcrypt = require("bcrypt");
+const board_entity_1 = require("../board/board.entity");
+var TaskStatus;
+(function (TaskStatus) {
+    TaskStatus["ToDo"] = "To Do";
+    TaskStatus["InProgress"] = "In Progress";
+    TaskStatus["Done"] = "Done";
+})(TaskStatus || (exports.TaskStatus = TaskStatus = {}));
 let Task = class Task {
-    usernameToLowerCase() {
-        this.username = this.username.toLowerCase();
-    }
-    hashPassword() {
-        this.password = bcrypt.hashSync(this.password, 10);
-    }
 };
 exports.Task = Task;
 __decorate([
@@ -27,29 +27,22 @@ __decorate([
     __metadata("design:type", Number)
 ], Task.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
-    __metadata("design:type", String)
-], Task.prototype, "username", void 0);
-__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Task.prototype, "password", void 0);
+], Task.prototype, "title", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' }),
-    __metadata("design:type", Date)
-], Task.prototype, "created_at", void 0);
+    (0, typeorm_1.Column)({ type: 'enum', enum: TaskStatus, default: TaskStatus.ToDo }),
+    __metadata("design:type", String)
+], Task.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], Task.prototype, "usernameToLowerCase", null);
+    (0, typeorm_1.Column)({ name: 'board_id', nullable: false }),
+    __metadata("design:type", Number)
+], Task.prototype, "boardId", void 0);
 __decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], Task.prototype, "hashPassword", null);
+    (0, typeorm_1.ManyToOne)(() => board_entity_1.Board, (board) => board.tasks, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'board_id' }),
+    __metadata("design:type", board_entity_1.Board)
+], Task.prototype, "board", void 0);
 exports.Task = Task = __decorate([
     (0, typeorm_1.Entity)({ name: 'tasks' })
 ], Task);

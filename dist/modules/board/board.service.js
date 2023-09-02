@@ -29,7 +29,10 @@ let BoardService = class BoardService {
         return this.boardRepository.find({ where: { userId } });
     }
     getBoardById(id, userId) {
-        return this.boardRepository.findOne({ where: { id, userId } });
+        return this.boardRepository.findOne({
+            where: { id, userId },
+            relations: ['tasks'],
+        });
     }
     async updateBoard(id, title, userId) {
         const boardFound = await this.getBoardById(id, userId);
@@ -37,8 +40,16 @@ let BoardService = class BoardService {
         return this.boardRepository.save(boardFound);
     }
     async deleteBoard(id, userId) {
-        const boardFound = await this.getBoardById(id, userId);
-        return this.boardRepository.remove(boardFound);
+        try {
+            const boardFound = await this.boardRepository.findOne({
+                where: { id, userId },
+                relations: ['tasks'],
+            });
+            return this.boardRepository.remove(boardFound);
+        }
+        catch (error) {
+            throw new common_1.NotFoundException(`Board with ID "${id}" not found`);
+        }
     }
 };
 exports.BoardService = BoardService;

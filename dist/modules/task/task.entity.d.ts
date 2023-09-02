@@ -1,8 +1,13 @@
+import { Board } from '../board/board.entity';
+export declare enum TaskStatus {
+    ToDo = "To Do",
+    InProgress = "In Progress",
+    Done = "Done"
+}
 export declare class Task {
     id: number;
-    username: string;
-    password: string;
-    created_at: Date;
-    usernameToLowerCase(): void;
-    hashPassword(): void;
+    title: string;
+    status: TaskStatus;
+    boardId: number;
+    board: Board;
 }

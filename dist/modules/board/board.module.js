@@ -12,16 +12,15 @@ const board_service_1 = require("./board.service");
 const board_controller_1 = require("./board.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const board_entity_1 = require("./board.entity");
+const task_module_1 = require("../task/task.module");
 let BoardModule = class BoardModule {
 };
 exports.BoardModule = BoardModule;
 exports.BoardModule = BoardModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([board_entity_1.Board]),
-        ],
+        imports: [task_module_1.TaskModule, typeorm_1.TypeOrmModule.forFeature([board_entity_1.Board])],
         providers: [board_service_1.BoardService],
-        controllers: [board_controller_1.BoardController]
+        controllers: [board_controller_1.BoardController],
     })
 ], BoardModule);
 //# sourceMappingURL=board.module.js.map

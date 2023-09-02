@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Board = void 0;
 const typeorm_1 = require("typeorm");
 const users_entity_1 = require("../users/users.entity");
+const task_entity_1 = require("../task/task.entity");
 let Board = class Board {
 };
 exports.Board = Board;
@@ -29,10 +30,14 @@ __decorate([
     __metadata("design:type", Number)
 ], Board.prototype, "userId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => users_entity_1.User, user => user.boards),
+    (0, typeorm_1.ManyToOne)(() => users_entity_1.User, (user) => user.boards),
     (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
     __metadata("design:type", users_entity_1.User)
 ], Board.prototype, "user", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => task_entity_1.Task, (task) => task.board, { cascade: true }),
+    __metadata("design:type", Array)
+], Board.prototype, "tasks", void 0);
 exports.Board = Board = __decorate([
     (0, typeorm_1.Entity)({ name: 'boards' })
 ], Board);
