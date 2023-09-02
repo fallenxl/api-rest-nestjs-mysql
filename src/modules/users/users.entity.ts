@@ -9,9 +9,6 @@ export class User {
   @Column({ unique: true })
   username: string;
 
-  @Column({ unique: true })
-  email: string;
-
   @Column()
   password: string;
 
@@ -19,8 +16,7 @@ export class User {
   created_at: Date;
 
   @BeforeInsert()
-  emailAndUsernameToLowerCase() {
-    this.email = this.email.toLowerCase();
+  usernameToLowerCase() {
     this.username = this.username.toLowerCase();
   }
 

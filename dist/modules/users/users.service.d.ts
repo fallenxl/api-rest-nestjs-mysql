@@ -5,4 +5,5 @@ export declare class UsersService {
     private userRepository;
     constructor(userRepository: Repository<User>);
     createUser(user: CreateUserDto): Promise<User>;
+    findByUsername(username: string): Promise<User>;
 }

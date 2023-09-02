@@ -13,8 +13,7 @@ exports.User = void 0;
 const typeorm_1 = require("typeorm");
 const bcrypt = require("bcrypt");
 let User = class User {
-    emailAndUsernameToLowerCase() {
-        this.email = this.email.toLowerCase();
+    usernameToLowerCase() {
         this.username = this.username.toLowerCase();
     }
     hashPassword() {
@@ -32,10 +31,6 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "username", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
@@ -48,7 +43,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], User.prototype, "emailAndUsernameToLowerCase", null);
+], User.prototype, "usernameToLowerCase", null);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),
