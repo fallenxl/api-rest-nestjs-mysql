@@ -95,16 +95,102 @@ Crea nuevas tareas y organízalas en los estados 'To Do', 'In Progress' y 'Done'
   "password": "password"
 }
 ```
-
-**Codigo de Respuesta:** 201
 **Ejemplo de Respuesta:**
 
 ```json
 { "access_token": "token_de_acceso" }
 ```
 
+## Tableros
+
+### Crear tablero
+**Metodo:** POST
+**Ruta:** '/boards'
+**Authorization:** 'Bearer <token_del_usuario>'
+**Parametros JSON:**
+
+```json
+{
+  "title" : "title_board"
+}
+```
+
+
+### Obtener todos los tableros
+**Metodo:** GET
+**Ruta:** '/boards'
+**Authorization:** 'Bearer <token_del_usuario>'
+
+
+### Obtener tablero por id
+**Metodo:** GET
+**Ruta:** '/boards/:id'
+**Authorization:** 'Bearer <token_del_usuario>'
+
+### Actualizar tablero por id
+**Metodo:** PUT
+**Ruta:** '/boards/:id'
+**Authorization:** 'Bearer <token_del_usuario>'
+**Parametros JSON:**
+```json
+{
+  "title" : "title_board",
+}
+```
+
+### Eliminar tablero por id
+**Metodo:** DELETE
+**Ruta:** '/boards/:id'
+**Authorization:** 'Bearer <token_del_usuario>'
+
+
+## Tareas
+
+### Crear tarea
+**Metodo:** POST
+**Ruta:** '/boards/:boardId/tasks'
+**Authorization:** 'Bearer <token_del_usuario>'
+**Parametros JSON:**
+
+```json
+{
+  "title" : "title_task"
+}
+```
+**Codigo de Respuesta:** 201
+
+
+### Obtener todas las tareas
+**Metodo:** GET
+**Ruta:** '/boards/:boardId/tasks'
+**Authorization:** 'Bearer <token_del_usuario>'
+
+
+### Obtener tarea por id
+**Metodo:** GET
+**Ruta:** '/boards/:boardId/tasks/:id'
+**Authorization:** 'Bearer <token_del_usuario>'
+
+### Actualizar tablero por id
+**Metodo:** PUT
+**Ruta:** '/boards/:boardId/tasks/:id'
+**Authorization:** 'Bearer <token_del_usuario>'
+**Parametros JSON:**
+```json
+{
+  "title" : "title_board",
+  "status": ["To Do", "In Progress", "Done"]
+}
+```
+
+### Eliminar tarea por id
+**Metodo:** DELETE
+**Ruta:** '/boards/:boardId/tasks/:id'
+**Authorization:** 'Bearer <token_del_usuario>'
+
 
 # Contribuciones
+
 
 ¡Las contribuciones son bienvenidas! Si tienes ideas para mejoras o encuentras errores, por favor crea un issue o envía una solicitud de pull.
 
