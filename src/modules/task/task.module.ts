@@ -6,9 +6,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BoardModule } from '../board/board.module';
 
 @Module({
-  imports: [BoardModule,
+  imports: [
     TypeOrmModule.forFeature([Task])],
   providers: [TaskService],
   controllers: [TaskController],
+  exports: [TaskService],
 })
 export class TaskModule {}

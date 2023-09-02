@@ -7,14 +7,14 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 @Module({
-  imports:[UsersModule,
-  JwtModule.register(
-    {
+  imports: [
+    UsersModule,
+    JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
-    }
-  )],
+    }),
+  ],
   providers: [AuthService],
   controllers: [AuthController],
   exports: [AuthService],
